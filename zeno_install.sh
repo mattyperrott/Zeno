@@ -40,7 +40,7 @@ mkdir -p "$BASE/models" "$BASE/models/loras"
 
 # ───────── Copy necessary directories ───────────────────────────────────────
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-for d in backend charts microservices; do
+for d in backend charts llamacpp microservices; do
   if [[ ! -d "${BASE}/${d}" ]]; then
     log "Copying ${d}/ → ${BASE}/${d}"
     cp -rT "${SCRIPT_DIR}/${d}" "${BASE}/${d}"
