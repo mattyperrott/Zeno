@@ -1,5 +1,6 @@
 global:
   registry: localhost:5000
+
 replicas: 1
 
 # ── engines ───────────────────────────────
@@ -14,21 +15,14 @@ ollama:
 
 llamaCpp:
   enabled: true
-  modelPath: /models/phi3-mini.gguf   # overridden by --set at install
+  modelPath: /models/phi-3-mini-128k-instruct.Q4_K_M.gguf
   nGPULayers: 40
   threads: 12
   batch: 64
-  resources:
-    requests:
-      cpu: "500m"
-      memory: "1Gi"
-    limits:
-      cpu: "2"
-      memory: "4Gi"
 
 images:
-  llamacpp: ghcr.io/ggerganov/llama.cpp:latest
+  llamacpp: localhost:5000/zeno-llamacpp:latest  # Built locally by install script
 
 modelVolume:
-  hostPath: /zeno/models               # overridden by installer
+  hostPath: /zeno/models               # Overridden dynamically at install
   mountPath: /models
