@@ -1,0 +1,36 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zeno-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: zeno-ui
+  template:
+    metadata:
+      labels:
+        app: zeno-ui
+    spec:
+      containers:
+        - name: ui
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          env:
+            {{- range $k, $v := .Values.env }}
+            - name: {{ $k }}
+              value: "{{ $v }}"
+            {{- end }}
+          ports:
+            - containerPort: 3210
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: zeno-ui
+spec:
+  selector:
+    app: zeno-ui
+  ports:
+    - port: 3210
+      targetPort: 3210

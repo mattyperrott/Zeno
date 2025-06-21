@@ -1,0 +1,34 @@
+global:
+  registry: localhost:5000
+replicas: 1
+
+# ── engines ───────────────────────────────
+vllm:
+  enabled: false
+tgi:
+  enabled: false
+lorax:
+  enabled: false
+ollama:
+  enabled: false
+
+llamaCpp:
+  enabled: true
+  modelPath: /models/phi3-mini.gguf   # overridden by --set at install
+  nGPULayers: 40
+  threads: 12
+  batch: 64
+  resources:
+    requests:
+      cpu: "500m"
+      memory: "1Gi"
+    limits:
+      cpu: "2"
+      memory: "4Gi"
+
+images:
+  llamacpp: ghcr.io/ggerganov/llama.cpp:latest
+
+modelVolume:
+  hostPath: /zeno/models               # overridden by installer
+  mountPath: /models

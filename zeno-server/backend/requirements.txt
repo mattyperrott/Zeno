@@ -1,0 +1,13 @@
+
+fastapi
+uvicorn[standard]
+httpx
+crewai
+langgraph
+langchain
+celery[redis]
+redis
+pgvector
+psycopg[binary]
+chromadb
+tenacity

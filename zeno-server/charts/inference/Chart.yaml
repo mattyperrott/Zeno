@@ -1,0 +1,5 @@
+
+apiVersion: v2
+name: zeno-inference
+version: 0.1.0
+description: Zeno inference stack (vLLM, TGI, LoRAX, Ollama, llama.cpp)

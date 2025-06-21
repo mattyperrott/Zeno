@@ -1,0 +1,10 @@
+
+postgresql:
+  auth:
+    username: zeno
+    password: zeno
+    database: zeno
+chroma:
+  persistence:
+    enabled: true
+    size: 10Gi

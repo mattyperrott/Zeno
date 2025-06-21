@@ -1,0 +1,33 @@
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two \r
+Icon
+
+# Thumbnails
+._*
+
+# Spotlight search indexing files
+.Spotlight-V100
+
+# Apple metadata
+.metadata_never_index
+.fseventsd
+.com.apple.timemachine.donotpresent
+
+# macOS system folder
+.VolumeIcon.icns
+
+# Time Machine backups
+.Backup*
+
+# macOS Trash folder
+.Trashes
+
+# Disk image contents
+*.dmg
+
+# macOS quarantine attributes
+*.quarantine

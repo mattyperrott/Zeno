@@ -1,0 +1,7 @@
+
+global:
+  registry: localhost:5000
+replicas: 1
+image:
+  repository: localhost:5000/zeno-agents
+  tag: latest

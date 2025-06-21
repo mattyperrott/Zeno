@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zeno-inference
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app: zeno-inference
+  template:
+    metadata:
+      labels:
+        app: zeno-inference
+    spec:
+      containers:
+        {{- if .Values.llamaCpp.enabled }}
+        - name: llamacpp
+          image: {{ .Values.images.llamacpp }}
+          args:
+            - "--model"
+            - "{{ .Values.llamaCpp.modelPath }}"
+            - "--n-gpu-layers"
+            - "{{ .Values.llamaCpp.nGPULayers }}"
+            - "--threads"
+            - "{{ .Values.llamaCpp.threads }}"
+            - "--batch"
+            - "{{ .Values.llamaCpp.batch }}"
+          volumeMounts:
+            - name: model-vol
+              mountPath: {{ .Values.modelVolume.mountPath }}
+        {{- end }}
+      volumes:
+        - name: model-vol
+          hostPath:
+            path: {{ .Values.modelVolume.hostPath }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: zeno-inference
+spec:
+  selector:
+    app: zeno-inference
+  ports:
+    - port: 8000
+      targetPort: 8000

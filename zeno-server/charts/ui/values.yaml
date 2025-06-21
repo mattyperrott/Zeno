@@ -1,0 +1,7 @@
+
+image:
+  repository: lobehub/lobe-chat
+  tag: latest
+env:
+  OPENAI_API_BASE: http://zeno-agents:8001
+  OPENAI_API_KEY: dummy
