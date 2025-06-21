@@ -113,7 +113,7 @@ sleep 5
 LLAMACPP_IMAGE="${REG}/zeno-llamacpp:latest"
 if ! docker image inspect "$LLAMACPP_IMAGE" &>/dev/null; then
   log "Building llama.cpp Docker image"
-  docker build -t "$LLAMACPP_IMAGE" "$BASE/backend/llamacpp"
+  docker build -t "$LLAMACPP_IMAGE" "$SCRIPT_DIR/llamacpp"
   docker push "$LLAMACPP_IMAGE"
 else
   log "llama.cpp Docker image already present: $LLAMACPP_IMAGE"
